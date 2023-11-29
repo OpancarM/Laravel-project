@@ -1,57 +1,32 @@
 <?php
 
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\News;
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use Illuminate\Http\Request;
+use App\Models\Posts;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('/', [PostsController::class, 'index']);
 
-// All News
-Route::get('/', [NewsController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard');
 
-// Show Create Form
-Route::get('/news/create', [NewsController::class, 'create'])->middleware('auth');
+Route::get('/posts/create', [PostsController::class, 'create']);
+Route::post('/posts', [PostsController::class, 'store']);
+Route::get('/posts/{posts}/edit', [PostsController::class, 'edit']);
+Route::put('/posts/{posts}', [PostsController::class, 'update']);
+Route::delete('/dashboard/{posts}', [DashboardController::class, 'destroy']);
 
-// Store News Data
-Route::post('/news', [NewsController::class, 'store'])->middleware('auth');
+Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
-// Show Edit Form
-Route::get('/news/{newss}/edit', [NewsController::class, 'edit'])->middleware('auth');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'store']);
 
-// Update News
-Route::put('/news/{newss}', [NewsController::class, 'update'])->middleware('auth');
+Route::get('/about', [AboutController::class, 'index'])
+    ->name('about');
 
-// Delete News
-Route::delete('/news/{newss}', [NewsController::class, 'destroy'])->middleware('auth');
 
-// Manage News
-Route::get('/news/manage', [NewsController::class, 'manage'])->middleware('auth');
 
-// Single News
-Route::get('/news/{newss}', [NewsController::class, 'show']);
-
-// Show Register/Create Form
-Route::get('/register', [UserController::class, 'create'])->middleware('guest');
-
-// Create New User
-Route::post('/users', [UserController::class, 'store']);
-
-// Log User Out
-Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
-
-// Show Login Form
-Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
-
-// Log In User
-Route::post('/users/authenticate', [UserController::class, 'authenticate']);
