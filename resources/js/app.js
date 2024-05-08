@@ -1,8 +1,7 @@
-const btn = document.getElementById('menu-btn')
-const nav = document.getElementById('menu')
+import './bootstrap';
 
-btn.addEventListener('click', () => {
-  btn.classList.toggle('open')
-  nav.classList.toggle('flex')
-  nav.classList.toggle('hidden')
-})
+const navLinks = document.querySelector('.nav-links')
+        function onToggleMenu(e){
+            e.name = e.name === 'menu' ? 'close' : 'menu'
+            navLinks.classList.toggle('top-[8%]')
+        }

@@ -6,7 +6,7 @@
       <p class="mb-4">Promjeni: {{$posts->title}}</p>
     </header>
 
-<div class="flex justify-center font-mono">
+<div class="container flex flex-col-reverse justify-end px-6 mx-auto mt-10 space-y-0 md:space-y-0 md:flex-rowshadow-md sm:rounded-lg w-4/5 items-center font-mono">
   <div class="w-10/12 bg-white p-6 rounded-lg">
     <form method="POST" action="/posts/{{$posts->id}}" enctype="multipart/form-data">
       @csrf
@@ -25,7 +25,7 @@
         <label for="description" class="inline-block text-lg mb-2">
           Tekts
         </label>
-        <textarea class="border border-gray-200 rounded p-2 w-full" name="description" rows="10"
+        <textarea id="message" class="border border-gray-200 rounded p-2 w-full style=" white-space: pre-wrap;" name="description" rows="10"
           placeholder="Include tasks, requirements, salary, etc">{{$posts->description}}</textarea>
 
         @error('description')

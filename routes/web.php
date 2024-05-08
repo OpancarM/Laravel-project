@@ -18,6 +18,7 @@ Route::get('/posts/create', [PostsController::class, 'create']);
 Route::post('/posts', [PostsController::class, 'store']);
 Route::get('/posts/{posts}/edit', [PostsController::class, 'edit']);
 Route::put('/posts/{posts}', [PostsController::class, 'update']);
+Route::get('/posts/{posts}', [PostsController::class, 'show']);
 Route::delete('/dashboard/{posts}', [DashboardController::class, 'destroy']);
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
@@ -27,6 +28,3 @@ Route::post('/login', [LoginController::class, 'store']);
 
 Route::get('/about', [AboutController::class, 'index'])
     ->name('about');
-
-
-

@@ -10,17 +10,17 @@
     
 </div>
 <div class="container flex flex-col-reverse justify-end px-6 mx-auto mt-10 space-y-0 md:space-y-0 md:flex-rowshadow-md sm:rounded-lg w-4/5 items-center font-mono">
-    <table class="w-full text-sm text-left  ">
+    <table class="w-full text-sm text-left">
         <thead class="text-xs text-gray-700 uppercase ">
             <tr >
                 <th scope="col" class="py-3 px-6 text-lg">
                     Naslov
                 </th>
-                <th scope="col" class="py-3 px-6 text-lg">
-                    Text
+                <th scope="col" class="py-3 px-6 text-lg hidden lg:block">
+                    Tekst
                 </th>
                 <th scope="col" class="py-3 px-6 text-lg">
-                    Vrijeme dodavnja
+                    Vrijeme dodavanja
                 </th>
                 <th scope="col" class="py-3 px-6 text-lg">
                     Action
@@ -29,11 +29,11 @@
         </thead>
         <tbody>
             @foreach($posts as $post)
-            <tr>
+            <tr">
                 <th scope="row" class="py-4 px-6 font-medium ">
                 {{$post->title}}
                 </th>
-                <td class="py-4 px-6">
+                <td class="py-4 px-6 hidden lg:block">
                 {{$post->description}}
                 </td>
                 <td class="py-4 px-6">
@@ -66,9 +66,3 @@
         {{ $posts->links() }}
     </div>
 @endsection
-
-
-
-                
-              
-

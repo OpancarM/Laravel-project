@@ -10,7 +10,13 @@ class PostsController extends Controller
     {
         return view('posts.index',[
             
-            'posts' => Posts::latest()->paginate(3)
+            'posts' => Posts::latest()->paginate(4)
+        ]);
+    }
+
+    public function show(Posts $posts) {
+        return view('posts.show', [
+            'posts' => $posts
         ]);
     }
 
@@ -25,7 +31,7 @@ class PostsController extends Controller
         ]);
 
         if($request->hasFile('image')) {
-            $formFields['image'] = $request->file('image')->store('images', 'public');
+            $formFields['image'] = $request->file('image')->move('uploads/images/');
         }
 
         Posts::create($formFields);
@@ -52,7 +58,7 @@ class PostsController extends Controller
         ]);
 
         if($request->hasFile('image')) {
-            $formFields['image'] = $request->file('image')->store('images', 'public');
+            $formFields['image'] = $request->file('image')->move('uploads/images/');
         }
 
         $posts->update($formFields);
